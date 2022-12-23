@@ -20,7 +20,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     @Query("SELECT e FROM Expense e WHERE e.yearx = ?1 and e.monthx = ?2 and e.category = ?3")
     List<Expense> findAllForMonthAndCategory(Integer yearx, Integer monthx, String category);
 
-    //@Query(value = "select new com.alok.spring.batch.model.ExpenseCategorySum(to_char(e.date, 'YYYYMM') month, e.category, SUM(e.amount) sum) from " +
+    //@Query(value = "select new com.alok.home.commons.model.ExpenseCategorySum(to_char(e.date, 'YYYYMM') month, e.category, SUM(e.amount) sum) from " +
     //        "Expense e group by month, e.category order by month desc, sum desc")
     @Query(value = "select yearx, monthx, e.category, SUM(e.amount) sum from " +
             "expense e group by yearx, monthx, e.category order by yearx desc, monthx desc, sum desc", nativeQuery = true)
@@ -43,7 +43,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     @Query("SELECT DISTINCT category from Expense")
     List<String> findDistinctCategories();
 
-    @Query("SELECT DISTINCT new com.alok.spring.model.YearMonth(yearx, monthx) from Expense")
+    @Query("SELECT DISTINCT new com.alok.home.commons.model.YearMonth(yearx, monthx) from Expense")
     List<YearMonth> findDistinctYearMonths();
 
 }
