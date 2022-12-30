@@ -14,16 +14,11 @@ import java.time.YearMonth;
 @NoArgsConstructor
 @Builder
 @Entity
-public class TaxMonthly implements Comparable<TaxMonthly> {
+public class TaxMonthly {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private YearMonth yearMonth;
+    private Short yearx;
+    private Short monthx;
     private Integer paidAmount;
-
-    @Override
-    public int compareTo(TaxMonthly o) {
-        return this.yearMonth.compareTo(o.yearMonth);
-    }
-
 }
