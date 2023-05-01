@@ -32,7 +32,8 @@ public class OdionTransaction {
         MISC("Misc"),
         ADARSH("Adarsh"),
         INTEREST_ADARSH("Interest_Adarsh"),
-        OPENING_BALANCE("Opening Balance");
+        OPENING_BALANCE("Opening Balance"),
+        MISC_ADARSH("Misc_Adarsh");
 
         private String name;
 
