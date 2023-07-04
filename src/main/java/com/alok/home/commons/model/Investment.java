@@ -8,13 +8,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-public class Investment {
+public class Investment implements Comparable<Investment> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -32,4 +33,20 @@ public class Investment {
         return valueAsOnMonth==null?0:valueAsOnMonth;
     }
 
+    @Override
+    public int compareTo(@NotNull Investment o) {
+        if (this.getYearx() > o.getYearx())
+            return 1;
+
+        if (this.getYearx() < o.getYearx())
+            return -1;
+
+        if (this.getMonthx() > o.getMonthx())
+            return 1;
+
+        if (this.getMonthx() < o.getMonthx())
+            return -1;
+
+        return 0;
+    }
 }
