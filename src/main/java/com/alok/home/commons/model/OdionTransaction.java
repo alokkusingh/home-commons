@@ -56,6 +56,12 @@ public class OdionTransaction {
         }
 
     }
+
+    public enum AccountHead {
+        SAVINGS_BANKS,
+        ODION,
+        ADARSH
+    }
 }
 
 
