@@ -26,4 +26,6 @@ public class RawInvestment {
     private Integer licValueAsOnMonth;
     private Integer shareContribution;
     private Integer shareValueAsOnMonth;
+    private Integer mfContribution;
+    private Integer mfValueAsOnMonth;
 }

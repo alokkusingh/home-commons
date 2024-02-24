@@ -11,7 +11,7 @@
     </parent>
 	<groupId>com.alok.home</groupId>
 	<artifactId>home-commons</artifactId>
-	<version>1.10.0</version>
+	<version>1.11.0</version>
 	<name>home-commons</name>
 	<description>Home Commons</description>
 

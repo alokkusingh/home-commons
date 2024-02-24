@@ -4,5 +4,6 @@ public enum InvestmentType {
     PF,
     LIC,
     NPS,
-    SHARE
+    SHARE,
+    MF
 }
