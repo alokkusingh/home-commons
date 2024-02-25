@@ -24,6 +24,7 @@ public class Investment implements Comparable<Investment> {
     private String head;
     private Integer contribution;
     private Integer valueAsOnMonth;
+    private Integer contributionAsOnMonth;
 
     public Integer getContribution() {
         return contribution==null?0:contribution;
@@ -31,6 +32,10 @@ public class Investment implements Comparable<Investment> {
 
     public Integer getValueAsOnMonth() {
         return valueAsOnMonth==null?0:valueAsOnMonth;
+    }
+
+    public Integer getContributionAsOnMonth() {
+        return contributionAsOnMonth==null?0:contributionAsOnMonth;
     }
 
     @Override
