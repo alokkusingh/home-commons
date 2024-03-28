@@ -26,6 +26,10 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
             "expense e group by yearx, monthx, e.category order by yearx desc, monthx desc, sum desc", nativeQuery = true)
     List<IExpenseCategoryMonthSum> findCategorySumGroupByMonth();
 
+    @Query(value = "select yearx, e.category, SUM(e.amount) sum from " +
+            "expense e group by yearx, e.category order by yearx desc, sum desc", nativeQuery = true)
+    List<IExpenseCategoryMonthSum> findCategorySumGroupByYear();
+
     @Query(value = "select yearx, monthx, e.category, SUM(e.amount) sum from " +
             "expense e WHERE e.category = ?1 group by yearx, monthx, e.category order by yearx desc, monthx desc, sum desc", nativeQuery = true)
     List<IExpenseCategoryMonthSum> findMonthlyExpenseForCategory(String category);
