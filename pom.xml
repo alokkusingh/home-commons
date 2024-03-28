@@ -11,7 +11,7 @@
     </parent>
 	<groupId>com.alok.home</groupId>
 	<artifactId>home-commons</artifactId>
-	<version>1.14.0</version>
+	<version>1.14.1</version>
 	<name>home-commons</name>
 	<description>Home Commons</description>
 
@@ -79,9 +79,9 @@ Note: "home-commons" repository definition is present in setting.xml
 -->
 	<distributionManagement>
 		<repository>
-			<id>home-commons</id>
+			<id>2-github</id>
 			<name>GitHub Packages</name>
-			<url>https://maven.pkg.github.com/alokkusingh/home-commons</url>
+			<url>https://maven.pkg.github.com/alokkusingh/mvn-repo</url>
 		</repository>
 	</distributionManagement>
 </project>
