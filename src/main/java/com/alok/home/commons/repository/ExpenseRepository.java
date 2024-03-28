@@ -34,6 +34,10 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
             "expense e group by yearx, monthx order by yearx desc, monthx desc, sum desc", nativeQuery = true)
     List<IExpenseMonthSum> findSumGroupByMonth();
 
+    @Query(value = "select yearx, SUM(e.amount) sum from " +
+            "expense e group by yearx order by yearx desc, sum desc", nativeQuery = true)
+    List<IExpenseMonthSum> findSumGroupByYear();
+
     @Query(value = "SELECT MAX(DATE) FROM expense", nativeQuery = true)
     Optional<Date> findLastTransactionDate();
 
