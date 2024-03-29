@@ -34,7 +34,12 @@ public class OdionTransaction {
         INTEREST_ADARSH("Interest_Adarsh"),
         OPENING_BALANCE("Opening Balance"),
         MISC_ADARSH("Misc_Adarsh"),
-        BOB_ADVANTAGE("BoB Advantage");
+        BOB_ADVANTAGE("BoB Advantage"),
+        JYOTHI("Jyothi"),
+        INTEREST_JYOTHI("Interest_Jyothi"),
+        MISC_JYOTHI("Misc_Jyothi"),
+        LIC_HFL("LIC-HFL"),
+        HDFC_HFL("HDFC-HFL");
 
         private String name;
 
@@ -61,7 +66,8 @@ public class OdionTransaction {
     public enum AccountHead {
         SAVINGS_BANKS,
         ODION,
-        ADARSH
+        ADARSH,
+        JYOTHI
     }
 }
 
