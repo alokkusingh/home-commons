@@ -6,34 +6,44 @@
 	<parent>
        	<groupId>org.springframework.boot</groupId>
        	<artifactId>spring-boot-starter-parent</artifactId>
-       	<version>3.0.0</version>
+       	<version>3.3.2</version>
        	<relativePath/> <!-- lookup parent from repository -->
     </parent>
 	<groupId>com.alok.home</groupId>
 	<artifactId>home-commons</artifactId>
-	<version>1.16.2</version>
+	<version>2.0.1</version>
+	<packaging>pom</packaging>
 	<name>home-commons</name>
 	<description>Home Commons</description>
 
 	<properties>
 		<maven.test.skip>true</maven.test.skip>
 		<java.version>17</java.version>
-		<lombok.version>1.18.22</lombok.version>
+		<lombok.version>1.18.26</lombok.version>
 	</properties>
 
+	<modules>
+		<module>home-commons-dto</module>
+		<module>home-commons-exception</module>
+		<module>home-commons-entity</module>
+		<module>home-commons-utils</module>
+		<module>home-commons-constants</module>
+		<module>home-commons-security</module>
+	</modules>
+
 	<dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-			<version>1.18.26</version>
+			<version>${lombok.version}</version>
 			<optional>true</optional>
         </dependency>
         <dependency>
@@ -62,7 +72,7 @@
 		<dependency>
 			<groupId>com.squareup.okhttp3</groupId>
 			<artifactId>okhttp</artifactId>
-			<version>4.10.0</version>
+			<version>4.12.0</version>
 		</dependency>
 	</dependencies>
 
@@ -72,16 +82,13 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>17</source>
-					<target>17</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
-	<!--
-Note: "home-commons" repository definition is present in setting.xml
--->
 	<distributionManagement>
 		<repository>
 			<id>2-github</id>
