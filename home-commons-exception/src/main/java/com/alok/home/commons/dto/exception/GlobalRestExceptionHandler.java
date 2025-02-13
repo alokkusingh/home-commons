@@ -1,6 +1,6 @@
 package com.alok.home.commons.dto.exception;
 
-import org.hibernate.exception.ConstraintViolationException;
+//import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -101,14 +101,14 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
         return problemDetail;
     }
 
-    @ExceptionHandler(ConstraintViolationException.class)
-    ProblemDetail handleException(ConstraintViolationException e) {
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
-        problemDetail.setTitle("Bad Request");
-        problemDetail.setType(URI.create("home-api/errors/bad-request"));
-        problemDetail.setProperty("errorCategory", "BadRequest");
-        problemDetail.setProperty("timestamp", ZonedDateTime.now());
-        e.printStackTrace();
-        return problemDetail;
-    }
+//    @ExceptionHandler(ConstraintViolationException.class)
+//    ProblemDetail handleException(ConstraintViolationException e) {
+//        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
+//        problemDetail.setTitle("Bad Request");
+//        problemDetail.setType(URI.create("home-api/errors/bad-request"));
+//        problemDetail.setProperty("errorCategory", "BadRequest");
+//        problemDetail.setProperty("timestamp", ZonedDateTime.now());
+//        e.printStackTrace();
+//        return problemDetail;
+//    }
 }
