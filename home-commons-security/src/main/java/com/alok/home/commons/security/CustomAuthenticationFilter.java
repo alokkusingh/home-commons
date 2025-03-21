@@ -59,7 +59,11 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        final String bearerToken = request.getHeader(HttpHeaders.AUTHORIZATION);
+        String bearerToken = request.getHeader(HttpHeaders.AUTHORIZATION);
+        if (bearerToken == null) {
+            bearerToken = request.getParameter("token");
+        }
+
         String issuer = request.getHeader("issuer");
         issuer = issuer ==  null? "google": issuer;
         String clientId = request.getHeader("client-id");

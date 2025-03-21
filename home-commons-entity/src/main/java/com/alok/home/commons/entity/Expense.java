@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Month;
 import java.util.Date;
 
 @Data
@@ -49,12 +50,14 @@ public class Expense implements Comparable<Expense> {
 
     @Override
     public String toString() {
-        return "Expense{" +
-                "id=" + id +
-                ", date=" + simpleDateFormat.format(date) +
-                ", amount=" + amount +
-                ", comment='" + comment + '\'' +
-                ", category='" + category + '\'' +
-                '}';
+        return "{" +
+                "\"id\":\"" + id + "\"" +
+                ", \"date\":\"" + simpleDateFormat.format(date) + "\"" +
+                ", \"expenseAmount\":\"" + amount + "\"" +
+                ", \"expenseComment\":\"" + comment + "\"" +
+                ", \"expenseCategory\":\"" + category + "\"" +
+                ", \"year\":\"" + yearx + "\"" +
+                ", \"month\":\"" + Month.of(monthx).toString() + "\"" +
+                "}";
     }
 }
