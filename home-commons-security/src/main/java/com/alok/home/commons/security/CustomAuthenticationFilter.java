@@ -6,6 +6,7 @@ import com.alok.home.commons.security.properties.TokenIssuerProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -59,9 +60,26 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
+        // Take it from header
         String bearerToken = request.getHeader(HttpHeaders.AUTHORIZATION);
+
+        // If not in header, take it from request parameter
+        // I know this is not a good practice as token will be in plain text in URL
+        // And in OAuth2.1 spec (which is still in draft) passing token in URL is deprecated
         if (bearerToken == null) {
             bearerToken = request.getParameter("token");
+        }
+
+        String scope = null;
+        // If not in request parameter, take it from cookie
+        if (bearerToken == null && request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                if (cookie.getName().equals("HOME_STACK_ACCESS_TOKEN")) {
+                    bearerToken = "Bearer " + cookie.getValue();
+                } else if (cookie.getName().equals("TOKEN_SCOPE")) {
+                    scope = cookie.getValue();
+                }
+            }
         }
 
         String issuer = request.getHeader("issuer");
@@ -73,8 +91,8 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        if (!issuer.equals("google") && clientId == null) {
-            log.error("client-id is mandatory for non Google IdP token");
+        if (!issuer.equals("google") && !"user".equals(scope) && clientId == null) {
+            log.error("client-id is mandatory for non Google IdP token and non user scope");
             filterChain.doFilter(request, response);
             return;
         }
@@ -90,13 +108,23 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
                     .build();
         } else {
             log.debug("Authenticating with home-auth IdP");
-            authRequest = new Request.Builder()
-                    .url(tokenIssuerProperties.getUrls().get(issuer))
-                    .method("POST", body)
-                    .addHeader("Authorization", bearerToken)
-                    .addHeader("subject", clientId)
-                    .addHeader("audience", applicationId)
-                    .build();
+            if ("user".equals(scope)) {
+                log.debug("Authenticating for user scope");
+                authRequest = new Request.Builder()
+                        .url(tokenIssuerProperties.getUrls().get(issuer))
+                        .method("POST", body)
+                        .addHeader("Authorization", bearerToken)
+                        .build();
+            } else {
+                log.debug("Authenticating for client scope");
+                authRequest = new Request.Builder()
+                        .url(tokenIssuerProperties.getUrls().get(issuer))
+                        .method("POST", body)
+                        .addHeader("Authorization", bearerToken)
+                        .addHeader("subject", clientId)
+                        .addHeader("audience", applicationId)
+                        .build();
+            }
         }
 
 
@@ -124,7 +152,6 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
                 userDetails, null,
                 userDetails.getAuthorities()
         );
-
 
         authentication.setDetails(
                 new WebAuthenticationDetailsSource().buildDetails(request)
