@@ -6,6 +6,7 @@ public record AuthResponseDto(
         String tokenType,
         String scope,
         String expiresIn,
-        String issuer
+        String issuer,
+        String refreshToken
 ) {
 }

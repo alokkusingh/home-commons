@@ -9,5 +9,8 @@ export PATH=$JAVA_HOME/bin:$PATH
 ```
 2. Maven Package
 ```shell
+mvn clean install 
+```
+```shell
 mvn clean deploy
 ```

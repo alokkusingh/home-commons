@@ -87,7 +87,16 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
         String clientId = request.getHeader("client-id");
 
         if (bearerToken == null || !bearerToken.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response);
+
+            if (issuer.equals("home-stack-auth")) {
+                log.error("Bearer token is missing or invalid");
+                response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                response.setContentType("application/json");
+                response.getWriter().write("{\"error\": \"Unauthorized: Missing or invalid authentication token.\"}");
+            } else {
+                filterChain.doFilter(request, response);
+            }
+
             return;
         }
 
