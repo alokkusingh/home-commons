@@ -4,6 +4,7 @@ import com.alok.home.commons.entity.Expense;
 import com.alok.home.commons.entity.IExpenseCategoryMonthSum;
 import com.alok.home.commons.entity.IExpenseMonthSum;
 import com.alok.home.commons.entity.YearMonth;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -53,6 +54,10 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     @Query("SELECT DISTINCT new com.alok.home.commons.entity.YearMonth(yearx, monthx) from Expense")
     List<YearMonth> findDistinctYearMonths();
+
+    @NotNull
+    @Query("SELECT e FROM Expense e")
+    List<Expense> findAll();
 
 }
 

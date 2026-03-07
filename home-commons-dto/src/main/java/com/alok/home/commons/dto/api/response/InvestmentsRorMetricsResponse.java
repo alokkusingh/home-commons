@@ -20,6 +20,7 @@ public class InvestmentsRorMetricsResponse {
         private InvestmentsReturn LIC;
         private InvestmentsReturn SHARE;
         private InvestmentsReturn MF;
+        private InvestmentsReturn ESPP;
         private InvestmentsReturn total;
 
 
