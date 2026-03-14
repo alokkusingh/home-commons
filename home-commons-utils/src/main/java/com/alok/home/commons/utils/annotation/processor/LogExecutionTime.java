@@ -1,4 +1,4 @@
-package com.alok.home.commons.utils.annotation.runtime.processor;
+package com.alok.home.commons.utils.annotation.processor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;

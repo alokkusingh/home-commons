@@ -1,4 +1,4 @@
-package com.alok.home.commons.utils.annotation.compiletime.processor;
+package com.alok.home.commons.utils.annotation.processor;
 
 import com.alok.home.commons.utils.annotation.compiletime.CompileTimeInfo;
 import com.google.auto.service.AutoService;
