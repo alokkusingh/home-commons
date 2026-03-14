@@ -1,11 +1,11 @@
-package com.alok.home.commons.utils.annotation;
+package com.alok.home.commons.utils.annotation.compiletime;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface LogExecutionTime {
+@Retention(RetentionPolicy.SOURCE)  // Compile-time only
+public @interface TrackMethod {
 }

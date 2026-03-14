@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.alok.home</groupId>
         <artifactId>home-commons</artifactId>
-        <version>2.1.13</version>
+        <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>home-commons-utils</artifactId>
@@ -15,6 +15,14 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
         </dependency>
+
+        <!-- this helps to auto generate META-INF/services/javax.annotation.processing.Processor -->
+        <dependency>
+            <groupId>com.google.auto.service</groupId>
+            <artifactId>auto-service</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>home-commons-utils</finalName>

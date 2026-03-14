@@ -1,4 +1,4 @@
-package com.alok.home.commons.utils;
+package com.alok.home.commons.utils.annotation.runtime.processor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class LogExecutionTime {
 
-    @Around("@annotation(com.alok.home.commons.utils.annotation.LogExecutionTime)")
+    @Around("@annotation(com.alok.home.commons.utils.annotation.runtime.LogExecutionTime)")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         final long start = System.currentTimeMillis();
 

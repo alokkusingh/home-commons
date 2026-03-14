@@ -70,7 +70,7 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
             bearerToken = request.getParameter("token");
         }
 
-        String scope = null;
+        String scope = request.getHeader("scope");
         // If not in request parameter, take it from cookie
         if (bearerToken == null && request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
