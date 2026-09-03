@@ -18,8 +18,14 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     @Query("SELECT e FROM Expense e WHERE e.yearx = ?1 and e.monthx = ?2")
     List<Expense> findAllForMonth(Integer yearx, Integer monthx);
 
+    @Query("SELECT e FROM Expense e WHERE e.yearx = ?1")
+    List<Expense> findAllForYear(Integer yearx);
+
     @Query("SELECT e FROM Expense e WHERE e.yearx = ?1 and e.monthx = ?2 and e.category = ?3")
     List<Expense> findAllForMonthAndCategory(Integer yearx, Integer monthx, String category);
+
+    @Query("SELECT e FROM Expense e WHERE e.yearx = ?1 and e.category = ?2")
+    List<Expense> findAllForYearAndCategory(Integer yearx, String category);
 
     //@Query(value = "select new com.alok.home.commons.model.ExpenseCategorySum(to_char(e.date, 'YYYYMM') month, e.category, SUM(e.amount) sum) from " +
     //        "Expense e group by month, e.category order by month desc, sum desc")
