@@ -23,6 +23,12 @@ public class FamilyProfile {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @Column(nullable = false, unique = false)
+    private String email;
+
+    @Column(nullable = false, unique = false)
+    private String mobile;
+
     @ManyToMany(mappedBy = "participants")
     private Set<LifeEvent> events = new HashSet<>();
 
