@@ -49,5 +49,6 @@ public class ExpensesResponseAggByDay {
         private String head;
         private String comment;
         private Double amount;
+        private String category;
     }
 }
