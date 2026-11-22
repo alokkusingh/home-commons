@@ -12,6 +12,8 @@ public class LifeEventResponseDTO {
     private String name;
     private List<EventDTO> events;
 
+    public LifeEventResponseDTO() {}
+
     public LifeEventResponseDTO(FamilyProfile profile) {
         this.entityId = profile.getId();
         this.name = profile.getName();
@@ -35,6 +37,8 @@ public class LifeEventResponseDTO {
         private String externalId;
         private String eventAge;
         private String duration;
+
+        public EventDTO() {}
 
         public EventDTO(LifeEvent event) {
             this.id = event.getId();
